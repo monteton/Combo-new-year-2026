@@ -1,71 +1,112 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="./vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FitFlow - Начать</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'app-bg': '#cfc7b8',
-            'card-bg': '#fefdfb',
-            'dark-charcoal': '#232220',
-            'text-secondary': '#6B7280',
-            'accent-purple': '#f0c7ff',
-            'accent-green': '#e7fcbb',
-            'accent-beige': '#d5cdbe',
-          },
-          borderRadius: {
-            '4xl': '2rem',
-            '5xl': '2.5rem',
-          },
-          animation: {
-            'ken-burns': 'ken-burns 20s ease-out infinite',
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-          },
-          keyframes: {
-            'ken-burns': {
-              '0%': { transform: 'scale(1) translate(0, 0)' },
-              '50%': { transform: 'scale(1.1) translate(-2%, 2%)' },
-              '100%': { transform: 'scale(1) translate(0, 0)' },
-            },
-          }
-        },
-      },
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+  <title>Комбо 5 программ</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Комбо 5 программ" />
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="theme-color" content="#3a1f6e" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-top: env(safe-area-inset-top, 0px);
     }
-  </script>
-  <link rel="stylesheet" href="./index.css">
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      background: #1d1433;
+      color: #fff;
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    .splash {
+      position: relative;
+      height: 100vh;
+      height: 100dvh;
+      max-width: 640px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .splash-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      animation: ken-burns 20s ease-out infinite;
+    }
+    @keyframes ken-burns {
+      0%, 100% { transform: scale(1) translate(0, 0); }
+      50% { transform: scale(1.1) translate(-2%, 2%); }
+    }
+    .splash-shade {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to top, rgba(29, 20, 51, .95) 0%, rgba(58, 31, 110, .55) 45%, rgba(0, 0, 0, 0) 75%),
+        linear-gradient(135deg, rgba(122, 75, 209, .25), rgba(63, 176, 126, .15));
+    }
+    .splash-content {
+      position: relative; z-index: 1;
+      height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+      padding: 0 24px calc(56px + var(--safe-bottom));
+      text-align: center;
+    }
+    .splash-tag {
+      font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+      color: #9ee6c2;
+      background: rgba(63, 176, 126, .18);
+      border: 1px solid rgba(158, 230, 194, .35);
+      padding: 6px 12px; border-radius: 999px;
+    }
+    .splash h1 { margin: 14px 0 6px; font-size: 44px; line-height: 1; font-weight: 800; letter-spacing: -.02em; }
+    .splash p { margin: 0 0 32px; font-size: 17px; font-weight: 600; opacity: .85; }
+    .splash p:has(+ .splash-sub) { margin-bottom: 8px; }
+    .splash .splash-sub { font-size: 15px; font-weight: 600; opacity: .7; }
+    .start-btn {
+      display: block;
+      width: 100%; max-width: 320px;
+      padding: 18px 24px;
+      border-radius: 20px;
+      background: linear-gradient(120deg, #8f5cf2 0%, #7a4bd1 45%, #3fb07e 100%);
+      color: #fff;
+      font-size: 17px; font-weight: 800; letter-spacing: .06em;
+      text-decoration: none;
+      box-shadow: 0 16px 36px -12px rgba(122, 75, 209, .8);
+      animation: breathe 3s ease-in-out infinite;
+    }
+    @keyframes breathe { 50% { transform: scale(1.03); } }
+    @media (prefers-reduced-motion: reduce) {
+      .splash-bg, .start-btn { animation: none; }
+    }
+  </style>
 </head>
 
-<body class="bg-dark-charcoal">
-
-  <div class="relative h-screen w-screen max-w-2xl mx-auto overflow-hidden">
-    <!-- Фоновое изображение с анимацией -->
-    <div class="absolute inset-0">
-      <img src="./images/natali.JPG" alt="Background" class="w-full h-full object-cover animate-ken-burns">
-    </div>
-
-    <!-- Градиент для затемнения -->
-    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
-
-    <!-- Контент -->
-    <div class="relative z-10 flex flex-col items-center justify-end h-full px-8 pb-24 text-center text-white">
-      <h1 class="text-4xl font-bold drop-shadow-lg mb-">КОМПЛЕКС "ALL INCLUSIVE"</h1>
-      <p class="text-lg mb-10 drop-shadow-md">ОСАНКА, ЛИЦО, ЯГОДИЦЫ, ПРЕСС, РУКИ</p>
-      <p class="text-lg mb-8 drop-shadow-md">Ваш путь к идеальной фигуре начинается здесь</p>
-      <a href="./main.html"
-        style="background-image: linear-gradient(to right, #c681f4 0%, #d38080  51%, #DAE2F8  100%); background-size: 200% auto;"
-        class="w-full max-w-xs text-white font-bold py-4 px-8 rounded-2xl shadow-lg transform hover:scale-105 transition-transform duration-300 animate-pulse-slow hover:background-position-right">
-        СТАРТ
-      </a>
+<body>
+  <div class="splash">
+    <img class="splash-bg" src="images/natali.JPG" alt="">
+    <div class="splash-shade"></div>
+    <div class="splash-content">
+      <span class="splash-tag">Комплекс тренировок</span>
+      <h1>КОМБО<br>5 ПРОГРАММ</h1>
+      <p>Осанка, лицо, ягодицы, пресс, руки</p>
+      <p class="splash-sub">Ваш путь к идеальной фигуре начинается здесь</p>
+      <a class="start-btn" href="main.html">СТАРТ</a>
     </div>
   </div>
 
+  <script>
+    window.addEventListener('load', () => { window.scrollTo(0, 0); });
+  </script>
 </body>
 
 </html>
